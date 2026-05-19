@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+        }
+        .header{
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            padding: 20px 20px 60px 20px;
+            position: relative;
+            text-align: center;
+            color: #fff;
+        }
+        .header h1{
+            margin: 0;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .cards{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+        }
+        .card{
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .quiz{
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+        }
+        .feedback{
+            background: linear-gradient(135deg, #96fbc4, #f9f586);
+            color: #333;
+        }
+        .img-placeholder{
+            width: 80px;
+            height: auto;
+            border-radius: 50%;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .timetable-container{
+            width: 95%;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .timetable-table{
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+        .timetable-table th,
+        .timetable-table td{
+            border: 1px solid #ddd;
+            padding: 12px;
+            vertical-align: middle;
+        }
+        .timetable-table th{
+            background-color: #f7c59f;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .timetable-table td{
+            font-size: 1rem;
+            background-color: #fdfdfd;
+        }
+        .timetable-table a{
+            text-decoration: none;
+            font-weight: bold;
+            color: #2b7a78;
+        }
+        .button-container{
+            margin: 20px;
+        }
+        button{
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 4pc;
+            background: #2b7a78;
+            color: #fff;
+            transition: background 0.2s
+        }
+        button:hover{
+            background: #205a55;
+        }
+        select{
+            width: 100%;
+            padding: 6px;
+            font-size: 1rem;
+            border: 1px solid #333;
+            background: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://png.pngtree.com/png-vector/20240809/ourmid/pngtree-cute-girl-reading-a-book-clipart-illustration-png-image_13421916.png" alt="Avatar" class="img-placeholder">
+
+    <div class="header">
+        
+        <!--Build a dashboard-style homepage using <div> containers and flexbox for layout-->
+            <!--Heading will be personalized based on storage student data-->
+            <h1 id="welcome">Welcome, Grade 5 Student</h1>
+            <div class="cards">
+                <!--Provide a link to the static quiz page using <a> and styled cards-->
+                    <a href="quiz.html" class="card quiz">Quiz</a>
+                    <!--Provide a link to the feedback form page using <a> and styled cards-->
+                        <a href="feedback.html" class="card feedback">Feedback</a>
+            </div> 
+    </div>
+    <!--Script to fetch and display the students name from localStorage-->
+    <script>
+        (function() {
+            //The key under which profile form saved the student's name
+            const nameKey = 'studentName';
+            //Retrieve the student's name from local storage
+            const studentName = localStorage.getItem(nameKey);
+            //If a name exists, update the welcome heading dynamically
+            if(studentName) {
+                const welcomeEl = document.getElementById('welcome');
+                welcomeEl.textContent = `Welcome, ${studentName}!`;
+            }
+        })();
+    </script>
+
+    <div class="timetable-container">
+        <h2>📘 Grade 6 Weekly Planner</h2>
+        <div class="button-container">
+            <!--Buttons to enable editing and save changes the planner-->
+            <button onclick="enableEdit()">Edit</button>
+            <button onclick="saveChanges()">Save</button>
+        </div>
+        <table class="timetable-table" id="timetable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10:00 - 11:00 AM</td>
+                    <td><a href="math.html">Math</a></td>
+                    <td><a href="science.html">Science</a></td>
+                    <td><a href="english.html">English</a></td>
+                    <td><a href="math.html">Math</a></td>
+                    <td><a href="science.html">Science</a></td>
+                </tr>
+                <tr>
+                    <td>11:00 - 12:00 PM</td>
+                    <td><a href="english.html">English</a></td>
+                    <td>Group Reading</td>
+                    <td><a href="math.html">Math</a></td>
+                    <td>Story Time</td>
+                    <td><a href="english.html">English</a></td>
+                </tr>
+                <tr>
+                    <td>12:00 - 1:00 PM</td>
+                    <td colspan="5">Lunch Break 🍱</td>
+                </tr>
+                <tr>
+                    <td>1:00 - 2:00 PM</td>
+                    <td>Games</td>
+                    <td><a href="science.html">Science</a></td>
+                    <td>Music</td>
+                    <td>Arts & Craft</td>
+                    <td>Reading Time</td>
+                </tr>
+              <tr>
+                <td>3:00 - 4:00 PM</td>
+                <td><a href="math.html">Math</a></td>
+                <td><a href="science.html">Science</a></td>
+                <td>Music</td>
+                <td>Art & Craft</td>
+                <td><a href="math.html">Math</a></td>
+              </tr>
+              <tr>
+                <td>4:00 - 5:00 PM</td>
+                <td>Music</td>
+                <td>Arts & Crafts</td>
+                <td><a href="math.html">Math</a></td>
+                <td><a href="science.html">Science</a></td>
+                <td>Arts & Crafts</td>
+              </tr>
+              <tr>
+                <td>5:00 - 6:00 PM</td>
+                <td><a href="english.html">English</a></td>
+                <td><a href="math.html">Math</a></td>
+                <td>Music</td>
+                <td>Arts & Crafts</td>
+                <td><a href="math.html">Math</a></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const subjects = [
+            { name: "Math", link: "math.html"},
+            { name: "Science", link: "science.html"},
+            { name: "English", link: "english.html"},
+            { name: "Games", link: ""},
+            { name: "Music", link: ""},
+            { name: "Art & Craft", link: ""},
+            { name: "Reading Time", link: ""},
+            { name: "Leisure", link: ""}
+        ];
+
+        //Enables editing of each cell by replacing text with <select>
+        function enableEdit() {
+            const table = document.getElementById('timetable');
+            for(let r = 1; r < table.rows.length; r++) {
+                const row = table.rows[r];
+                for(let c = 1; c < row.cells.length; c++) {
+                    const cell = row.cells[c];
+                    if(cell.colSpan > 1) continue;
+                    const text = cell.innerText.trim();
+                    const select = document.createElement('select');
+                    subjects.forEach(sub => {
+                        const opt = document.createElement('option');
+                        opt.value = sub.name;
+                        opt.textContent = sub.name;
+                        if(sub.name === text) opt.selected = true;
+                        select.appendChild(opt);
+                    });
+                    cell.innerHtml = '';
+                    cell.appendChild(select);
+                }
+            }
+        }
+
+        //Saves changes by converting <select> back to text or link
+        function saveChanges() {
+            const table = document.getElementById('timetable');
+            for(let r = 1; r < table.rows.length; r++) {
+                const row = table.rows[r];
+                for(let c = 1; c < row.cells.length; c++) {
+                    const cell = row.cells[c];
+                    if(cell.colSpan > 1) continue;
+                    const select = cell.querySelector('select');
+                    if(select) {
+                        const val = select.value;
+                        const subj = subjects.find(s => s.name === val);
+                        cell.innerHtml = subj.link
+                        ? `<a href="${subj.link}">${subj.name}</a>`
+                        : subj.name;
+                        //ternary operator - (condition) ? true : false
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
